@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/czwarty_z_palety"
     tools:context=".MainActivity" >
 
 
@@ -16,15 +16,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="165dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
+        android:pointerIcon="hand"
+        android:background="@color/czwarty_z_palety"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:tint="@color/black"
+        app:tint="@color/drugi_z_palety"
         app:srcCompat="@drawable/zamknij_apke" />
 
     <ImageButton
@@ -32,31 +32,31 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
+        android:pointerIcon="hand"
+        android:background="@color/czwarty_z_palety"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/zamknij_apke"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.019"
         app:srcCompat="@drawable/info_o_grze"
-        app:tint="@color/black" />
+        app:tint="@color/drugi_z_palety" />
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mistrzowie Liczb"
         android:layout_marginTop="20dp"
         android:textSize="35dp"
         android:fontFamily="@font/nexium_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/pierwszy_z_palety"
         app:layout_constraintEnd_toStartOf="@id/guideline3"
         app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/guideline2"
-        app:layout_constraintWidth_percent="50" />
+        app:layout_constraintWidth_percent="50"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -78,14 +78,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
-
+    <!--style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Surface"-->
     <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/przycisk_graj"
         android:layout_width="240dp"
         android:layout_height="80dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="100dp"
         android:text="GRAJ"
         android:textSize="20dp"
+        android:pointerIcon="hand"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
         android:fontFamily="@font/corva_round"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -93,23 +97,32 @@
         app:layout_constraintBottom_toTopOf="@id/przycisk_ranking"/>
 
     <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/przycisk_ranking"
         android:layout_width="240dp"
         android:layout_height="80dp"
+        android:pointerIcon="hand"
         android:text="RANKING"
         android:textSize="20dp"
         android:fontFamily="@font/corva_round"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/przycisk_graj"
         app:layout_constraintBottom_toTopOf="@id/przycisk_codzienne_wyzwanie"/>
     <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:id="@+id/przycisk_codzienne_wyzwanie"
         android:layout_width="240dp"
         android:layout_height="80dp"
+        android:layout_marginBottom="100dp"
+        android:pointerIcon="hand"
         android:text="CODZIENNE WYZWANIE"
         android:textSize="18dp"
         android:fontFamily="@font/corva_round"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
         app:layout_constraintBottom_toTopOf="@id/autor"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -125,6 +138,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="20dp"
         android:fontFamily="@font/bambuchinnox"
+        android:textColor="@color/pierwszy_z_palety"
         android:text="Kacper Ściślak 4pT" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

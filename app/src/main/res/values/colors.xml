@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Paleta kolorów: https://colorhunt.co/palette/635985443c6839305318122b -->
+    <color name="czwarty_z_palety">#18122B</color>
+    <color name="trzeci_z_palety">#393053</color>
+    <color name="drugi_z_palety">#443C68</color>
+    <color name="pierwszy_z_palety">#635985</color>
+    <color name="tekst_przyciskow_glowna">#9992b0</color>
 </resources>
