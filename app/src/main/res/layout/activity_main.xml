@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/zamknij_apke" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/info_gra"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
