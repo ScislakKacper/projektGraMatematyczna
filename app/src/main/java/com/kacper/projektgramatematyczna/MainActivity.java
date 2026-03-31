@@ -1,8 +1,10 @@
 package com.kacper.projektgramatematyczna;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -43,11 +45,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.AlertDialogCustom));
-                builder.setMessage("Zasady gry:\n1. Zasada1\n2. Zasada2\n3. Zasada3");
+                builder.setTitle("Zasady gry \"Mistrzowie Liczb\":");
+                builder.setMessage("\n\n1. Kazdy gracz posiada okreslony czas na rozwiazanie wylosowanego pytania z dziedziny matematycznej.\n\n2. Za poprawna odpowiedz gracz otrzymuje 1 punkt i przechodzi do następnego zadania, w ktorym czas odlicza sie od nowa.\n\n3. Gra konczy się gdy gracz nie odpowie na pytanie w limicie czasowym lub poda błedna odpowiedz.\n\n4. Wszystkie wyniki graczy zapisywane sa w ogolnodostępnym rankingu.");
                 builder.setCancelable(true);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-                alertDialog.getWindow().setLayout(700, 700);
+                alertDialog.getWindow().setLayout(1000, 1200);
             }
         });
     }

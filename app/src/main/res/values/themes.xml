@@ -10,7 +10,6 @@
         <item name="android:textColor">#393053</item>
         <item name="android:background">#635985</item>
         <item name="android:fontFamily">@font/corva_round</item>
-        <item name="android:textSize">40dp</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">40sp</item>
     </style>
 </resources>
