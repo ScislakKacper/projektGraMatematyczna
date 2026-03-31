@@ -5,6 +5,7 @@
       "odpa": "Rasa psa",
       "odpb": "Marka auta",
       "odpc": "Wymyślona nazwa",
+      "odpd": "Wymyślona nazwa",
       "poprawna": 0,
       "poziom" : "latwe"
     },
@@ -13,6 +14,7 @@
       "odpa": "4 łapy",
       "odpb": "6 łap",
       "odpc": "8 łap",
+      "odpd": "Wymyślona nazwa",
       "poprawna": 0,
       "poziom" : "srednie"
     },
@@ -21,6 +23,7 @@
       "odpa": "Warszawa",
       "odpb": "Kraków",
       "odpc": "Poznań",
+      "odpd": "Wymyślona nazwa",
       "poprawna": 0,
       "poziom" : "trudne"
     }
