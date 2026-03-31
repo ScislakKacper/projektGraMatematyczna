@@ -3,6 +3,9 @@ package com.kacper.projektgramatematyczna;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.activity.OnBackPressedDispatcherOwner;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -45,5 +48,13 @@ public class Zakladka_gry extends AppCompatActivity {
 
             }
         });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 }

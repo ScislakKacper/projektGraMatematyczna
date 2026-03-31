@@ -2,11 +2,13 @@ package com.kacper.projektgramatematyczna;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    private Button przyciskGraj;
     private ImageButton zamknijApke;
     private ImageButton infoGra;
     @Override
@@ -32,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         zamknijApke = findViewById(R.id.zamknij_apke);
         infoGra = findViewById(R.id.info_gra);
+        przyciskGraj = findViewById(R.id.przycisk_graj);
+
+        przyciskGraj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent zagrajWGre = new Intent(getApplicationContext(), Zakladka_gry.class);
+                startActivity(zagrajWGre);
+            }
+        });
 
         zamknijApke.setOnClickListener(new View.OnClickListener() {
             @Override
