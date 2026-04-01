@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +38,11 @@ public class Zakladka_gry extends AppCompatActivity {
     RadioButton ButtonOdpB;
     RadioButton ButtonOdpC;
     RadioButton ButtonOdpD;
+    Random random = new Random();
+    int minimalnePytanie = 0;
+    int mnoznikCiezkosci = 1;
+    int numerAktualnegoPytania = random.nextInt(3 * mnoznikCiezkosci) + minimalnePytanie;
+    int ilePytan = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +75,8 @@ public class Zakladka_gry extends AppCompatActivity {
                     Toast.makeText(Zakladka_gry.this, response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                List<Pytanie> pytania = response.body();
-                Toast.makeText(Zakladka_gry.this, pytania.get(0).getTrescPytania(), Toast.LENGTH_SHORT).show();
+                pytanie = response.body();
+                wyswietlPytanie(numerAktualnegoPytania);
             }
 
             @Override
@@ -86,5 +92,32 @@ public class Zakladka_gry extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+
+    }
+    private boolean sprawdzOdp(int ktorePytanie){
+        Pytanie aktualne_pytanie = pytanie.get(ktorePytanie);
+
+        if(radioGroup.getCheckedRadioButtonId() == radioButton[aktualne_pytanie.getPoprawna()]){
+            ilePytan++;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    private void wyswietlPytanie(int ktorePytanie){
+        if(ilePytan == 10 || ilePytan == 20){
+            minimalnePytanie += 10;
+            mnoznikCiezkosci++;
+        }
+        textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
+        ButtonOdpA.setText(pytanie.get(ktorePytanie).getOdpa());
+        ButtonOdpB.setText(pytanie.get(ktorePytanie).getOdpb());
+        ButtonOdpC.setText(pytanie.get(ktorePytanie).getOdpc());
+        ButtonOdpD.setText(pytanie.get(ktorePytanie).getOdpd());
+        ButtonOdpA.setChecked(false);
+        ButtonOdpB.setChecked(false);
+        ButtonOdpC.setChecked(false);
+        ButtonOdpD.setChecked(false);
     }
 }
