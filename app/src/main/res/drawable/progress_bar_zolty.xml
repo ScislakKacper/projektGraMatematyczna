@@ -14,11 +14,7 @@
         <scale android:scaleWidth="100%">
             <shape>
                 <corners android:radius="8dp"/>
-                <gradient
-                    android:endColor="#00FF00"
-                    android:centerColor="#FFD300"
-                    android:startColor="#FF0000"
-                    />
+                <solid android:color="#FFD300"/>
             </shape>
         </scale>
     </item>

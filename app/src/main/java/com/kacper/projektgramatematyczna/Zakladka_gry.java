@@ -1,10 +1,13 @@
 package com.kacper.projektgramatematyczna;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ public class Zakladka_gry extends AppCompatActivity {
     RadioButton przyciskiOdpowiedzi[];
     TextView textViewPunkty;
     ImageView zyciaGracza[];
+    ProgressBar odliczanieCzasu;
     Random random = new Random();
     int minimalnePytanie = 0;
     int mnoznikCiezkosci = 1;
@@ -56,6 +60,8 @@ public class Zakladka_gry extends AppCompatActivity {
     int ilePytan = 0;
     int iloscPunktow = 0;
     int iloscZyc = 3;
+    int iloscSekund = 30;
+    CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +82,13 @@ public class Zakladka_gry extends AppCompatActivity {
         ButtonOdpD = findViewById(R.id.odpd);
         textViewPunkty = findViewById(R.id.punkty);
         buttonZatwierdzPytanie = findViewById(R.id.zatwierdzPytanie);
+        odliczanieCzasu = findViewById(R.id.odliczanieCzasu);
 
         zyciaGracza = new ImageView[]{
           findViewById(R.id.serce1), findViewById(R.id.serce2), findViewById(R.id.serce3)
         };
 
-        RadioButton przyciskiOdpowiedzi[] = new RadioButton[]{
+        przyciskiOdpowiedzi = new RadioButton[]{
                 ButtonOdpA, ButtonOdpB, ButtonOdpC, ButtonOdpD
         };
 
@@ -135,7 +142,6 @@ public class Zakladka_gry extends AppCompatActivity {
     }
     private boolean sprawdzOdp(int ktorePytanie){
         Pytanie aktualne_pytanie = pytanie.get(ktorePytanie);
-
         if(radioGroup.getCheckedRadioButtonId() == radioButton[aktualne_pytanie.getPoprawna()]){
             ilePytan++;
             if(aktualne_pytanie.getPoziom().equals("latwy")){
@@ -148,6 +154,9 @@ public class Zakladka_gry extends AppCompatActivity {
                 iloscPunktow += 3;
             }
             textViewPunkty.setText("Punkty: " + iloscPunktow);
+            countDownTimer.cancel();
+            numerAktualnegoPytania = random.nextInt(3);
+            wyswietlPytanie(numerAktualnegoPytania);
             return true;
         }
         else{
@@ -156,11 +165,19 @@ public class Zakladka_gry extends AppCompatActivity {
             if(iloscZyc == 0){
                 Toast.makeText(this, "Przegrałeś", Toast.LENGTH_SHORT).show();
                 buttonZatwierdzPytanie.setEnabled(false);
+                countDownTimer.cancel();
+            }
+            else{
+                numerAktualnegoPytania = random.nextInt(3);
+                wyswietlPytanie(numerAktualnegoPytania);
             }
             return false;
         }
     }
     private void wyswietlPytanie(int ktorePytanie){
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
         if(ilePytan == 10 || ilePytan == 20){
             minimalnePytanie += 10;
             mnoznikCiezkosci++;
@@ -168,6 +185,16 @@ public class Zakladka_gry extends AppCompatActivity {
         buttonZatwierdzPytanie.setEnabled(false);
         textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
         textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
+
+        if(pytanie.get(ktorePytanie).getPoziom().equals("latwy")){
+            iloscSekund = 30;
+        }
+        else if(pytanie.get(ktorePytanie).getPoziom().equals("sredni")){
+            iloscSekund = 20;
+        }
+        else{
+            iloscSekund = 10;
+        }
         ButtonOdpA.setText(pytanie.get(ktorePytanie).getOdpa());
         ButtonOdpB.setText(pytanie.get(ktorePytanie).getOdpb());
         ButtonOdpC.setText(pytanie.get(ktorePytanie).getOdpc());
@@ -176,5 +203,39 @@ public class Zakladka_gry extends AppCompatActivity {
         ButtonOdpB.setChecked(false);
         ButtonOdpC.setChecked(false);
         ButtonOdpD.setChecked(false);
+        buttonZatwierdzPytanie.setEnabled(true);
+
+        odliczanieCzasu.setMax(600);
+        odliczanieCzasu.setProgressDrawable(getDrawable(R.drawable.progress_bar_zielony));
+        odliczanieCzasu.setProgress(600);
+        countDownTimer = new CountDownTimer(iloscSekund * 1000, 1000) {
+            @Override
+            public void onFinish() {
+                iloscZyc--;
+                zyciaGracza[iloscZyc].setVisibility(View.INVISIBLE);
+                if(iloscZyc == 0){
+                    Toast.makeText(Zakladka_gry.this, "Przegrałeś", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    numerAktualnegoPytania = random.nextInt(3);
+                    wyswietlPytanie(numerAktualnegoPytania);
+                }
+            }
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(odliczanieCzasu.getProgress() > odliczanieCzasu.getMax() * 0.6){
+                    odliczanieCzasu.setProgressDrawable(getDrawable(R.drawable.progress_bar_zielony));
+                }
+                else if(odliczanieCzasu.getProgress() > odliczanieCzasu.getMax() * 0.3){
+                    odliczanieCzasu.setProgressDrawable(getDrawable(R.drawable.progress_bar_zolty));
+                }
+                else{
+                    odliczanieCzasu.setProgressDrawable(getDrawable(R.drawable.progress_bar_czerwony));
+                }
+                int progress = (int) (odliczanieCzasu.getMax() * millisUntilFinished / (iloscSekund * 1000));
+                odliczanieCzasu.setProgress(progress);
+            }
+        };
+        countDownTimer.start();
     }
 }
