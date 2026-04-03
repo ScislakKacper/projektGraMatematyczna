@@ -7,43 +7,184 @@
     android:layout_height="match_parent"
     tools:context=".Zakladka_gry">
 
+    <ProgressBar
+        android:id="@+id/odliczanieCzasu"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dp"
+        android:progressDrawable="@drawable/styl_progress_bar"
+        android:progress="100"
+        android:max="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"/>
+    <TextView
+        android:id="@+id/punkty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Punkty: "
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4"
+        app:layout_constraintEnd_toStartOf="@id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        android:textSize="20sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4">
+
+        <ImageView
+            android:id="@+id/serce1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+
+        <ImageView
+            android:id="@+id/serce2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+
+        <ImageView
+            android:id="@+id/serce3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/poziomTrudnosci"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/guideline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline7"
+        android:text="poziom łatwy"/>
 
     <TextView
         android:id="@+id/trescPytania"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:padding="10dp"
         android:text=""
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="185dp" />
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline7"
+        app:layout_constraintBottom_toTopOf="@id/odpowiedzi"/>
 
     <RadioGroup
         android:id="@+id/odpowiedzi"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        app:layout_constraintBottom_toTopOf="@+id/zatwierdzPytanie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trescPytania"
+        android:padding="20dp">
 
         <RadioButton
             android:id="@+id/odpa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:textSize="17.5sp"
+            android:text=""
+            android:layout_margin="15dp"
+            android:layout_marginTop="0dp"/>
 
         <RadioButton
             android:id="@+id/odpb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:textSize="17.5sp"
+            android:text=""
+            android:layout_margin="15dp"/>
 
         <RadioButton
             android:id="@+id/odpc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:textSize="17.5sp"
+            android:text=""
+            android:layout_margin="15dp"/>
 
         <RadioButton
             android:id="@+id/odpd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:textSize="17.5sp"
+            android:text=""
+            android:layout_margin="15dp"/>
     </RadioGroup>
+
+    <Button
+        android:id="@+id/zatwierdzPytanie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/odpowiedzi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25sp"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:pointerIcon="hand"
+        android:textAllCaps="true"
+        android:text="Sprawdź" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="62dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="146dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="213dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

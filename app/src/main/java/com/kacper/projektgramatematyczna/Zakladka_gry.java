@@ -27,6 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Zakladka_gry extends AppCompatActivity {
     List <Pytanie> pytanie;
     TextView textViewPytanie;
+    TextView textViewPoziomTrudnosci;
     RadioGroup radioGroup;
     int radioButton[] = new int[]{
             R.id.odpa,
@@ -38,12 +39,14 @@ public class Zakladka_gry extends AppCompatActivity {
     RadioButton ButtonOdpB;
     RadioButton ButtonOdpC;
     RadioButton ButtonOdpD;
+    TextView textViewPunkty;
     Random random = new Random();
     int minimalnePytanie = 0;
     int mnoznikCiezkosci = 1;
-    int numerAktualnegoPytania = random.nextInt(3 * mnoznikCiezkosci) + minimalnePytanie;
+    //int numerAktualnegoPytania = random.nextInt(3 * mnoznikCiezkosci) + minimalnePytanie;
+    int numerAktualnegoPytania;
     int ilePytan = 0;
-
+    int iloscPunktow = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,13 +57,17 @@ public class Zakladka_gry extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        iloscPunktow = 0;
         textViewPytanie = findViewById(R.id.trescPytania);
+        textViewPoziomTrudnosci = findViewById(R.id.poziomTrudnosci);
         radioGroup = findViewById(R.id.odpowiedzi);
         ButtonOdpA = findViewById(R.id.odpa);
         ButtonOdpB = findViewById(R.id.odpb);
         ButtonOdpC = findViewById(R.id.odpc);
         ButtonOdpD = findViewById(R.id.odpd);
+        textViewPunkty = findViewById(R.id.punkty);
+
+        textViewPunkty.setText("Punkty: " + iloscPunktow);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://my-json-server.typicode.com/ScislakKacper/projektGraMatematyczna/")
@@ -76,6 +83,7 @@ public class Zakladka_gry extends AppCompatActivity {
                     return;
                 }
                 pytanie = response.body();
+                numerAktualnegoPytania = random.nextInt(3);
                 wyswietlPytanie(numerAktualnegoPytania);
             }
 
@@ -92,13 +100,22 @@ public class Zakladka_gry extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
-
     }
     private boolean sprawdzOdp(int ktorePytanie){
         Pytanie aktualne_pytanie = pytanie.get(ktorePytanie);
 
         if(radioGroup.getCheckedRadioButtonId() == radioButton[aktualne_pytanie.getPoprawna()]){
             ilePytan++;
+            if(aktualne_pytanie.getPoziom().equals("latwy")){
+                iloscPunktow++;
+            }
+            else if(aktualne_pytanie.getPoziom().equals("sredni")){
+                iloscPunktow += 2;
+            }
+            else{
+                iloscPunktow += 3;
+            }
+            textViewPunkty.setText("Punkty: " + iloscPunktow);
             return true;
         }
         else{
@@ -111,6 +128,7 @@ public class Zakladka_gry extends AppCompatActivity {
             mnoznikCiezkosci++;
         }
         textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
+        textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
         ButtonOdpA.setText(pytanie.get(ktorePytanie).getOdpa());
         ButtonOdpB.setText(pytanie.get(ktorePytanie).getOdpb());
         ButtonOdpC.setText(pytanie.get(ktorePytanie).getOdpc());
