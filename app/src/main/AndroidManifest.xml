@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projektgramatematyczna">
         <activity
-            android:name=".MainActivity"
+            android:name=".Zakladka_gry"
             android:exported="false" />
         <activity
-            android:name=".Zakladka_gry"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,10 @@
 package com.kacper.projektgramatematyczna;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -10,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.activity.OnBackPressedDispatcherOwner;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,6 +34,7 @@ public class Zakladka_gry extends AppCompatActivity {
     TextView textViewPytanie;
     TextView textViewPoziomTrudnosci;
     RadioGroup radioGroup;
+    Button buttonZatwierdzPytanie;
     int radioButton[] = new int[]{
             R.id.odpa,
             R.id.odpb,
@@ -39,7 +45,9 @@ public class Zakladka_gry extends AppCompatActivity {
     RadioButton ButtonOdpB;
     RadioButton ButtonOdpC;
     RadioButton ButtonOdpD;
+    RadioButton przyciskiOdpowiedzi[];
     TextView textViewPunkty;
+    ImageView zyciaGracza[];
     Random random = new Random();
     int minimalnePytanie = 0;
     int mnoznikCiezkosci = 1;
@@ -47,6 +55,7 @@ public class Zakladka_gry extends AppCompatActivity {
     int numerAktualnegoPytania;
     int ilePytan = 0;
     int iloscPunktow = 0;
+    int iloscZyc = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +75,15 @@ public class Zakladka_gry extends AppCompatActivity {
         ButtonOdpC = findViewById(R.id.odpc);
         ButtonOdpD = findViewById(R.id.odpd);
         textViewPunkty = findViewById(R.id.punkty);
+        buttonZatwierdzPytanie = findViewById(R.id.zatwierdzPytanie);
 
-        textViewPunkty.setText("Punkty: " + iloscPunktow);
+        zyciaGracza = new ImageView[]{
+          findViewById(R.id.serce1), findViewById(R.id.serce2), findViewById(R.id.serce3)
+        };
+
+        RadioButton przyciskiOdpowiedzi[] = new RadioButton[]{
+                ButtonOdpA, ButtonOdpB, ButtonOdpC, ButtonOdpD
+        };
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://my-json-server.typicode.com/ScislakKacper/projektGraMatematyczna/")
@@ -100,6 +116,22 @@ public class Zakladka_gry extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+
+        for (int i = 0; i < 4; i++) {
+            przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                    buttonZatwierdzPytanie.setEnabled(true);
+                }
+            });
+        }
+
+        buttonZatwierdzPytanie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sprawdzOdp(numerAktualnegoPytania);
+            }
+        });
     }
     private boolean sprawdzOdp(int ktorePytanie){
         Pytanie aktualne_pytanie = pytanie.get(ktorePytanie);
@@ -119,6 +151,12 @@ public class Zakladka_gry extends AppCompatActivity {
             return true;
         }
         else{
+            iloscZyc--;
+            zyciaGracza[iloscZyc].setVisibility(View.INVISIBLE);
+            if(iloscZyc == 0){
+                Toast.makeText(this, "Przegrałeś", Toast.LENGTH_SHORT).show();
+                buttonZatwierdzPytanie.setEnabled(false);
+            }
             return false;
         }
     }
@@ -127,6 +165,7 @@ public class Zakladka_gry extends AppCompatActivity {
             minimalnePytanie += 10;
             mnoznikCiezkosci++;
         }
+        buttonZatwierdzPytanie.setEnabled(false);
         textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
         textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
         ButtonOdpA.setText(pytanie.get(ktorePytanie).getOdpa());
