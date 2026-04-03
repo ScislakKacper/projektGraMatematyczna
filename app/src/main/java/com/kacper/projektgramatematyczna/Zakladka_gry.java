@@ -1,8 +1,10 @@
 package com.kacper.projektgramatematyczna;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -23,6 +25,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.agog.mathdisplay.MTMathView;
+
 import java.util.List;
 import java.util.Random;
 
@@ -34,7 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Zakladka_gry extends AppCompatActivity {
     List <Pytanie> pytanie;
-    TextView textViewPytanie;
+    MTMathView textViewPytanie;
     TextView textViewPoziomTrudnosci;
     RadioGroup radioGroup;
     Button buttonZatwierdzPytanie;
@@ -61,6 +65,7 @@ public class Zakladka_gry extends AppCompatActivity {
     int iloscPunktow = 0;
     int iloscZyc = 3;
     int iloscSekund = 30;
+
     CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,15 +129,6 @@ public class Zakladka_gry extends AppCompatActivity {
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
 
-        for (int i = 0; i < 4; i++) {
-            przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                    buttonZatwierdzPytanie.setEnabled(true);
-                }
-            });
-        }
-
         buttonZatwierdzPytanie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,10 +163,6 @@ public class Zakladka_gry extends AppCompatActivity {
                 buttonZatwierdzPytanie.setEnabled(false);
                 countDownTimer.cancel();
             }
-            else{
-                numerAktualnegoPytania = random.nextInt(3);
-                wyswietlPytanie(numerAktualnegoPytania);
-            }
             return false;
         }
     }
@@ -183,7 +175,10 @@ public class Zakladka_gry extends AppCompatActivity {
             mnoznikCiezkosci++;
         }
         buttonZatwierdzPytanie.setEnabled(false);
-        textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
+        radioGroup.clearCheck();
+        textViewPytanie.setLatex("\\text{"+pytanie.get(ktorePytanie).getTrescPytania()+"} \\\\ \\\\" + "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
+        textViewPytanie.setFontSize(60);
+        textViewPytanie.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
 
         if(pytanie.get(ktorePytanie).getPoziom().equals("latwy")){
@@ -199,12 +194,22 @@ public class Zakladka_gry extends AppCompatActivity {
         ButtonOdpB.setText(pytanie.get(ktorePytanie).getOdpb());
         ButtonOdpC.setText(pytanie.get(ktorePytanie).getOdpc());
         ButtonOdpD.setText(pytanie.get(ktorePytanie).getOdpd());
-        ButtonOdpA.setChecked(false);
-        ButtonOdpB.setChecked(false);
-        ButtonOdpC.setChecked(false);
-        ButtonOdpD.setChecked(false);
-        buttonZatwierdzPytanie.setEnabled(true);
-
+        for (int i = 0; i < 4; i++) {
+            przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                    buttonZatwierdzPytanie.setEnabled(true);
+                }
+            });
+        }
+        for (int i = 0; i < 4; i++) {
+            przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+                    buttonZatwierdzPytanie.setEnabled(true);
+                }
+            });
+        }
         odliczanieCzasu.setMax(600);
         odliczanieCzasu.setProgressDrawable(getDrawable(R.drawable.progress_bar_zielony));
         odliczanieCzasu.setProgress(600);

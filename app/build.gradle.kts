@@ -34,8 +34,18 @@ android {
 }
 
 dependencies {
+    configurations.all {
+        resolutionStrategy {
+            // Zawsze używaj Guava jako źródła ListenableFuture
+            force("com.google.guava:guava:18.0")
+            // Wyklucz listenablefuture z wszystkich transitive dependencies
+            exclude("com.google.guava", "listenablefuture")
+        }
+    }
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.gregcockroft:AndroidMath:v1.1.0")
+    implementation("com.google.guava:guava:31.1-android")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
