@@ -97,7 +97,7 @@ public class Zakladka_gry extends AppCompatActivity {
         };
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://my-json-server.typicode.com/ScislakKacper/projektGraMatematyczna/")
+                .baseUrl("https://scislakkacper.github.io/projektGraMatematycznaJSON/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonPlaceholderApi jsonPlaceholderApi = retrofit.create(JsonPlaceholderApi.class);
@@ -106,11 +106,11 @@ public class Zakladka_gry extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Pytanie>> call, Response<List<Pytanie>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(Zakladka_gry.this, response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Zakladka_gry.this, ""+response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 pytanie = response.body();
-                numerAktualnegoPytania = random.nextInt(3);
+                numerAktualnegoPytania = random.nextInt(pytanie.size());
                 wyswietlPytanie(numerAktualnegoPytania);
             }
 
@@ -150,7 +150,7 @@ public class Zakladka_gry extends AppCompatActivity {
             }
             textViewPunkty.setText("Punkty: " + iloscPunktow);
             countDownTimer.cancel();
-            numerAktualnegoPytania = random.nextInt(3);
+            numerAktualnegoPytania = random.nextInt(pytanie.size());
             wyswietlPytanie(numerAktualnegoPytania);
             return true;
         }
@@ -171,8 +171,8 @@ public class Zakladka_gry extends AppCompatActivity {
         }
         buttonZatwierdzPytanie.setEnabled(false);
         radioGroup.clearCheck();
-        //textViewPytanie.setLatex("\\text{"+pytanie.get(ktorePytanie).getTrescPytania()+"} \\\\ \\\\" + "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
-        textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
+        textViewPytanie.setLatex(pytanie.get(ktorePytanie).getTrescPytania());
+        //textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
         textViewPytanie.setFontSize(60);
         textViewPytanie.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
