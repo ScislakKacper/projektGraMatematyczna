@@ -57,9 +57,8 @@ public class Zakladka_gry extends AppCompatActivity {
     ImageView zyciaGracza[];
     ProgressBar odliczanieCzasu;
     Random random = new Random();
-    int minimalnePytanie = 0;
-    int mnoznikCiezkosci = 1;
-    //int numerAktualnegoPytania = random.nextInt(3 * mnoznikCiezkosci) + minimalnePytanie;
+    // tablica dla id, które już były
+    //int numerAktualnegoPytania = random.nextInt(pytanie.size());
     int numerAktualnegoPytania;
     int ilePytan = 0;
     int iloscPunktow = 0;
@@ -170,18 +169,15 @@ public class Zakladka_gry extends AppCompatActivity {
         if(countDownTimer != null){
             countDownTimer.cancel();
         }
-        if(ilePytan == 10 || ilePytan == 20){
-            minimalnePytanie += 10;
-            mnoznikCiezkosci++;
-        }
         buttonZatwierdzPytanie.setEnabled(false);
         radioGroup.clearCheck();
-        textViewPytanie.setLatex("\\text{"+pytanie.get(ktorePytanie).getTrescPytania()+"} \\\\ \\\\" + "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
+        //textViewPytanie.setLatex("\\text{"+pytanie.get(ktorePytanie).getTrescPytania()+"} \\\\ \\\\" + "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
+        textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
         textViewPytanie.setFontSize(60);
         textViewPytanie.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
 
-        if(pytanie.get(ktorePytanie).getPoziom().equals("latwy")){
+        if(pytanie.get(ktorePytanie).getPoziom().equals("trudny")){
             iloscSekund = 30;
         }
         else if(pytanie.get(ktorePytanie).getPoziom().equals("sredni")){
@@ -222,7 +218,6 @@ public class Zakladka_gry extends AppCompatActivity {
                     Toast.makeText(Zakladka_gry.this, "Przegrałeś", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    numerAktualnegoPytania = random.nextInt(3);
                     wyswietlPytanie(numerAktualnegoPytania);
                 }
             }
