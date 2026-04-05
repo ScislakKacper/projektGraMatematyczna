@@ -3,20 +3,31 @@ package com.kacper.projektgramatematyczna;
 import com.google.gson.annotations.SerializedName;
 
 public class Pytanie {
-    @SerializedName("treść")
+    @SerializedName("tresc")
     private String trescPytania;
+    private String dzialanie;
     private String odpa, odpb, odpc, odpd;
     private int poprawna;
     private String poziom;
 
-    public Pytanie(String trescPytania, String odpa, String odpb, String odpc, String odpd, int poprawna, String poziom) {
+
+    public Pytanie(String trescPytania, String dzialanie, String odpa, String odpb, String odpc, String odpd, int poprawna, String poziom) {
         this.trescPytania = trescPytania;
+        this.dzialanie = dzialanie;
         this.odpa = odpa;
         this.odpb = odpb;
         this.odpc = odpc;
         this.odpd = odpd;
         this.poprawna = poprawna;
         this.poziom = poziom;
+    }
+
+    public String getDzialanie() {
+        return dzialanie;
+    }
+
+    public void setDzialanie(String dzialanie) {
+        this.dzialanie = dzialanie;
     }
 
     public String getTrescPytania() {

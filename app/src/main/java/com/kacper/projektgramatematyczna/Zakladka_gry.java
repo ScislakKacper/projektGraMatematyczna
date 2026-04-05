@@ -38,7 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Zakladka_gry extends AppCompatActivity {
     List <Pytanie> pytanie;
-    MTMathView textViewPytanie;
+    TextView textViewPytanie;
+    MTMathView mathViewDzialanieZPytania;
     TextView textViewPoziomTrudnosci;
     RadioGroup radioGroup;
     Button buttonZatwierdzPytanie;
@@ -79,6 +80,7 @@ public class Zakladka_gry extends AppCompatActivity {
         iloscPunktow = 0;
         textViewPytanie = findViewById(R.id.trescPytania);
         textViewPoziomTrudnosci = findViewById(R.id.poziomTrudnosci);
+        mathViewDzialanieZPytania = findViewById(R.id.dzialanieZPytania);
         radioGroup = findViewById(R.id.odpowiedzi);
         ButtonOdpA = findViewById(R.id.odpa);
         ButtonOdpB = findViewById(R.id.odpb);
@@ -161,6 +163,8 @@ public class Zakladka_gry extends AppCompatActivity {
                 Toast.makeText(this, "Przegrałeś", Toast.LENGTH_SHORT).show();
                 buttonZatwierdzPytanie.setEnabled(false);
                 countDownTimer.cancel();
+                finish();
+                System.exit(0);
             }
             return false;
         }
@@ -171,12 +175,20 @@ public class Zakladka_gry extends AppCompatActivity {
         }
         buttonZatwierdzPytanie.setEnabled(false);
         radioGroup.clearCheck();
-        textViewPytanie.setLatex(pytanie.get(ktorePytanie).getTrescPytania());
+        textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
+        mathViewDzialanieZPytania.setLatex(pytanie.get(ktorePytanie).getDzialanie());
         //textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
-        textViewPytanie.setFontSize(60);
-        textViewPytanie.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
-
+        mathViewDzialanieZPytania.setFontSize(60);
+        mathViewDzialanieZPytania.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        if(pytanie.get(ktorePytanie).getPoziom().equals("sredni")){
+            textViewPoziomTrudnosci.setText("Poziom średni");
+        }
+        else if(pytanie.get(ktorePytanie).getPoziom().equals("latwy")){
+            textViewPoziomTrudnosci.setText("Poziom łatwy");
+        }
+        else{
+            textViewPoziomTrudnosci.setText("Poziom " + pytanie.get(ktorePytanie).getPoziom());
+        }
         if(pytanie.get(ktorePytanie).getPoziom().equals("trudny")){
             iloscSekund = 30;
         }
@@ -216,6 +228,8 @@ public class Zakladka_gry extends AppCompatActivity {
                 zyciaGracza[iloscZyc].setVisibility(View.INVISIBLE);
                 if(iloscZyc == 0){
                     Toast.makeText(Zakladka_gry.this, "Przegrałeś", Toast.LENGTH_SHORT).show();
+                    finish();
+                    System.exit(0);
                 }
                 else{
                     wyswietlPytanie(numerAktualnegoPytania);

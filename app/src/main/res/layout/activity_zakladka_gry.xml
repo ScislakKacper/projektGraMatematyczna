@@ -83,9 +83,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline7"
         android:text="poziom łatwy"/>
+    <TextView
+        android:id="@+id/trescPytania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:padding="10dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline7"
+        app:layout_constraintBottom_toTopOf="@id/dzialanieZPytania"/>
 
     <com.agog.mathdisplay.MTMathView
-        android:id="@+id/trescPytania"
+        android:id="@+id/dzialanieZPytania"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
@@ -97,7 +112,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/trescPytania"
         app:layout_constraintBottom_toTopOf="@id/odpowiedzi"/>
 
 
