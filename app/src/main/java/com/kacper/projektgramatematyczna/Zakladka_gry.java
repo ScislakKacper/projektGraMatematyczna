@@ -27,6 +27,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.agog.mathdisplay.MTMathView;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -58,9 +59,7 @@ public class Zakladka_gry extends AppCompatActivity {
     ImageView zyciaGracza[];
     ProgressBar odliczanieCzasu;
     Random random = new Random();
-    // tablica dla id, które już były
-    //int numerAktualnegoPytania = random.nextInt(pytanie.size());
-    int numerAktualnegoPytania;
+    int numerAktualnegoPytania = 0;
     int iloscPunktow = 0;
     int iloscZyc = 3;
     int iloscSekund = 30;
@@ -111,7 +110,8 @@ public class Zakladka_gry extends AppCompatActivity {
                     return;
                 }
                 pytanie = response.body();
-                numerAktualnegoPytania = random.nextInt(pytanie.size());
+                Collections.shuffle(pytanie);
+                numerAktualnegoPytania = 0;
                 wyswietlPytanie(numerAktualnegoPytania);
             }
 
@@ -152,8 +152,7 @@ public class Zakladka_gry extends AppCompatActivity {
             }
             textViewPunkty.setText("Punkty: " + iloscPunktow);
             countDownTimer.cancel();
-            numerAktualnegoPytania = random.nextInt(pytanie.size());
-            wyswietlPytanie(numerAktualnegoPytania);
+            nastepnePytanie();
             return true;
         }
         else{
@@ -180,7 +179,6 @@ public class Zakladka_gry extends AppCompatActivity {
         radioGroup.clearCheck();
         textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
         mathViewDzialanieZPytania.setLatex(pytanie.get(ktorePytanie).getDzialanie());
-        //textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
         mathViewDzialanieZPytania.setFontSize(80);
         mathViewDzialanieZPytania.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         mathViewDzialanieZPytania.setTextColor(Color.parseColor("#9992b0"));
@@ -236,8 +234,7 @@ public class Zakladka_gry extends AppCompatActivity {
                     System.exit(0);
                 }
                 else{
-                    numerAktualnegoPytania = random.nextInt(pytanie.size());
-                    wyswietlPytanie(numerAktualnegoPytania);
+                    nastepnePytanie();
                 }
             }
             @Override
@@ -256,5 +253,16 @@ public class Zakladka_gry extends AppCompatActivity {
             }
         };
         countDownTimer.start();
+    }
+    private void nastepnePytanie() {
+        numerAktualnegoPytania++;
+
+        if (numerAktualnegoPytania >= pytanie.size()) {
+            Toast.makeText(this, "Koniec pytań!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        wyswietlPytanie(numerAktualnegoPytania);
     }
 }
