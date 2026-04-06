@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/czwarty_z_palety"
     tools:context=".Zakladka_gry">
 
     <ProgressBar
@@ -28,14 +29,17 @@
         android:id="@+id/punkty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/tekst_przyciskow_glowna"
         android:text="Punkty: 0"
+        android:fontFamily="@font/appleberry"
+        android:textAllCaps="true"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline4"
         app:layout_constraintEnd_toStartOf="@id/guideline5"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        android:textSize="20sp"
+        android:textSize="25sp"
         />
 
     <LinearLayout
@@ -73,6 +77,7 @@
 
     <TextView
         android:id="@+id/poziomTrudnosci"
+        android:fontFamily="@font/chunkfive_ex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
@@ -82,9 +87,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/guideline7"
+        android:textColor="@color/kolor_napisow"
         android:text="poziom łatwy"/>
     <TextView
         android:id="@+id/trescPytania"
+        android:textColor="@color/kolor_napisow"
+        android:fontFamily="@font/chunkfive_ex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
@@ -127,8 +135,13 @@
         android:padding="20dp">
 
         <RadioButton
+            style="@style/MyRadioButtonStyle"
             android:id="@+id/odpa"
+            android:fontFamily="@font/biko_bold"
             android:layout_width="match_parent"
+            android:background="@color/trzeci_z_palety"
+            android:buttonTint="#FF0000"
+            android:textColor="@color/kolor_napisow"
             android:layout_height="wrap_content"
             android:textSize="17.5sp"
             android:text=""
@@ -136,15 +149,23 @@
             android:layout_marginTop="0dp"/>
 
         <RadioButton
+            style="@style/MyRadioButtonStyle"
             android:id="@+id/odpb"
+            android:fontFamily="@font/biko_bold"
             android:layout_width="match_parent"
+            android:background="@color/trzeci_z_palety"
+            android:textColor="@color/kolor_napisow"
             android:layout_height="wrap_content"
             android:textSize="17.5sp"
             android:text=""
             android:layout_margin="15dp"/>
 
         <RadioButton
+            style="@style/MyRadioButtonStyle"
             android:id="@+id/odpc"
+            android:fontFamily="@font/biko_bold"
+            android:background="@color/trzeci_z_palety"
+            android:textColor="@color/kolor_napisow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17.5sp"
@@ -152,8 +173,12 @@
             android:layout_margin="15dp"/>
 
         <RadioButton
+            style="@style/MyRadioButtonStyle"
             android:id="@+id/odpd"
+            android:fontFamily="@font/biko_bold"
             android:layout_width="match_parent"
+            android:textColor="@color/kolor_napisow"
+            android:background="@color/trzeci_z_palety"
             android:layout_height="wrap_content"
             android:textSize="17.5sp"
             android:text=""

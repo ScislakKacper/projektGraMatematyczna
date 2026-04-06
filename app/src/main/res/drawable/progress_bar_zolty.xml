@@ -3,7 +3,7 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="8dp"/>
-            <solid android:color="#521A95"/>
+            <solid android:color="@color/drugi_z_palety"/>
         </shape>
     </item>
     <item android:id="@+id/odliczanieCzasu"

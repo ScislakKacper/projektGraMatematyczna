@@ -61,7 +61,6 @@ public class Zakladka_gry extends AppCompatActivity {
     // tablica dla id, które już były
     //int numerAktualnegoPytania = random.nextInt(pytanie.size());
     int numerAktualnegoPytania;
-    int ilePytan = 0;
     int iloscPunktow = 0;
     int iloscZyc = 3;
     int iloscSekund = 30;
@@ -140,7 +139,8 @@ public class Zakladka_gry extends AppCompatActivity {
     private boolean sprawdzOdp(int ktorePytanie){
         Pytanie aktualne_pytanie = pytanie.get(ktorePytanie);
         if(radioGroup.getCheckedRadioButtonId() == radioButton[aktualne_pytanie.getPoprawna()]){
-            ilePytan++;
+            RadioButton zaznaczonyDobrze = findViewById(radioGroup.getCheckedRadioButtonId());
+            zaznaczonyDobrze.setBackgroundColor(Color.GREEN);
             if(aktualne_pytanie.getPoziom().equals("latwy")){
                 iloscPunktow++;
             }
@@ -159,6 +159,9 @@ public class Zakladka_gry extends AppCompatActivity {
         else{
             iloscZyc--;
             zyciaGracza[iloscZyc].setVisibility(View.INVISIBLE);
+            RadioButton zaznaczonyZle = findViewById(radioGroup.getCheckedRadioButtonId());
+            zaznaczonyZle.setBackgroundColor(Color.RED);
+            zaznaczonyZle.setEnabled(false);
             if(iloscZyc == 0){
                 Toast.makeText(this, "Przegrałeś", Toast.LENGTH_SHORT).show();
                 buttonZatwierdzPytanie.setEnabled(false);
@@ -178,8 +181,9 @@ public class Zakladka_gry extends AppCompatActivity {
         textViewPytanie.setText(pytanie.get(ktorePytanie).getTrescPytania());
         mathViewDzialanieZPytania.setLatex(pytanie.get(ktorePytanie).getDzialanie());
         //textViewPytanie.setLatex("\\text{Do obliczania czego sluzy podany wzor:} \\\\ \\\\ x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}");
-        mathViewDzialanieZPytania.setFontSize(60);
+        mathViewDzialanieZPytania.setFontSize(80);
         mathViewDzialanieZPytania.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        mathViewDzialanieZPytania.setTextColor(Color.parseColor("#9992b0"));
         if(pytanie.get(ktorePytanie).getPoziom().equals("sredni")){
             textViewPoziomTrudnosci.setText("Poziom średni");
         }
@@ -202,14 +206,14 @@ public class Zakladka_gry extends AppCompatActivity {
         ButtonOdpB.setText(pytanie.get(ktorePytanie).getOdpb());
         ButtonOdpC.setText(pytanie.get(ktorePytanie).getOdpc());
         ButtonOdpD.setText(pytanie.get(ktorePytanie).getOdpd());
-        for (int i = 0; i < 4; i++) {
-            przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-                    buttonZatwierdzPytanie.setEnabled(true);
-                }
-            });
-        }
+        ButtonOdpA.setEnabled(true);
+        ButtonOdpB.setEnabled(true);
+        ButtonOdpC.setEnabled(true);
+        ButtonOdpD.setEnabled(true);
+        ButtonOdpA.setBackgroundColor(Color.parseColor("#393053"));
+        ButtonOdpB.setBackgroundColor(Color.parseColor("#393053"));
+        ButtonOdpC.setBackgroundColor(Color.parseColor("#393053"));
+        ButtonOdpD.setBackgroundColor(Color.parseColor("#393053"));
         for (int i = 0; i < 4; i++) {
             przyciskiOdpowiedzi[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -232,6 +236,7 @@ public class Zakladka_gry extends AppCompatActivity {
                     System.exit(0);
                 }
                 else{
+                    numerAktualnegoPytania = random.nextInt(pytanie.size());
                     wyswietlPytanie(numerAktualnegoPytania);
                 }
             }
