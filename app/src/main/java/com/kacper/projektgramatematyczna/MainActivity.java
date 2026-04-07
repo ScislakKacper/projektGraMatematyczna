@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -20,6 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private Button przyciskGraj;
+    private Button przyciskRanking;
     private ImageButton zamknijApke;
     private ImageButton infoGra;
     @Override
@@ -36,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
         zamknijApke = findViewById(R.id.zamknij_apke);
         infoGra = findViewById(R.id.info_gra);
         przyciskGraj = findViewById(R.id.przycisk_graj);
+        przyciskRanking = findViewById(R.id.przycisk_ranking);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
         przyciskGraj.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 alertDialog.getWindow().setLayout(1000, 1200);
+            }
+        });
+
+        przyciskRanking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent zobaczRanking = new Intent(getApplicationContext(), Ranking.class);
+                startActivity(zobaczRanking);
             }
         });
     }

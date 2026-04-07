@@ -44,6 +44,7 @@ public class Koniec_gry extends AppCompatActivity {
         });
         zagrajPonownie = findViewById(R.id.zagrajPonownie);
         przejdzDoStronyGlownej = findViewById(R.id.przejdzDoStronyGlownej);
+        przejdzDoRankingu = findViewById(R.id.przejdzDoRankingu);
         zapiszWynik = findViewById(R.id.zapiszWynik);
         zapiszWynik.setEnabled(false);
         textViewNickGracza = findViewById(R.id.nickGracza);
@@ -60,6 +61,30 @@ public class Koniec_gry extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+
+        Intent stronaGlowna = new Intent(getApplicationContext(), MainActivity.class);
+        Intent ranking = new Intent(getApplicationContext(), Ranking.class);
+        Intent ponownaGra  = new Intent(getApplicationContext(), Zakladka_gry.class);
+
+        przejdzDoStronyGlownej.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(stronaGlowna);
+            }
+        });
+        przejdzDoRankingu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ranking);
+            }
+        });
+        zagrajPonownie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ponownaGra);
+            }
+        });
+
 
         bazaDanychWynikow = BazaDanychWynikow.zwrocInstancjeBazyDanych(Koniec_gry.this);
         List<Wyniki> listaWynikow = bazaDanychWynikow.zwrocWynikiDao().wyswietlWszystkieWyniki();
@@ -137,6 +162,5 @@ public class Koniec_gry extends AppCompatActivity {
                 Toast.makeText(Koniec_gry.this, "Wynik zapisany!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
