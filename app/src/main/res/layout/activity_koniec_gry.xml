@@ -52,8 +52,10 @@
 
     <AutoCompleteTextView
         android:id="@+id/nickGracza"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="50dp"
         android:hint="Podaj nick do zapisania wyniku:"
         app:layout_constraintTop_toBottomOf="@id/wynikGry"
@@ -61,11 +63,22 @@
         app:layout_constraintEnd_toEndOf="parent"
          />
 
-    <ImageButton
-        android:id="@+id/przejdzDoRankingu"
+    <Button
+        android:id="@+id/zapiszWynik"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ranking"
+        android:textAllCaps="true"
+        android:text="Zapisz wynik"
+        app:layout_constraintTop_toBottomOf="@id/nickGracza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/przejdzDoStronyGlownej"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/strona_glowna"
         android:background="#00000000"
         app:layout_constraintTop_toBottomOf="@id/nickGracza"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,16 +92,16 @@
         app:srcCompat="@drawable/zagraj_ponownie"
         android:background="#00000000"
         app:layout_constraintTop_toBottomOf="@id/nickGracza"
-        app:layout_constraintStart_toEndOf="@id/przejdzDoRankingu"
-        app:layout_constraintEnd_toStartOf="@id/przejdzDoStronyGlownej"
+        app:layout_constraintStart_toEndOf="@id/przejdzDoStronyGlownej"
+        app:layout_constraintEnd_toStartOf="@id/przejdzDoRankingu"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
     <ImageButton
-        android:id="@+id/przejdzDoStronyGlownej"
+        android:id="@+id/przejdzDoRankingu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/strona_glowna"
+        app:srcCompat="@drawable/ranking"
         android:background="#00000000"
         app:layout_constraintTop_toBottomOf="@id/nickGracza"
         app:layout_constraintStart_toEndOf="@id/zagrajPonownie"

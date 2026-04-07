@@ -256,7 +256,7 @@ public class Zakladka_gry extends AppCompatActivity {
         countDownTimer.start();
     }
     private void nastepnePytanie() {
-        numerAktualnegoPytania+=90;
+        numerAktualnegoPytania++;
 
         if (numerAktualnegoPytania >= pytanie.size()) {
             koniecGry();
