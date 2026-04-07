@@ -1,5 +1,6 @@
 package com.kacper.projektgramatematyczna;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -162,7 +163,7 @@ public class Zakladka_gry extends AppCompatActivity {
             zaznaczonyZle.setBackgroundColor(Color.RED);
             zaznaczonyZle.setEnabled(false);
             if(iloscZyc == 0){
-                Toast.makeText(this, "Przegrałeś", Toast.LENGTH_SHORT).show();
+                koniecGry();
                 buttonZatwierdzPytanie.setEnabled(false);
                 countDownTimer.cancel();
                 finish();
@@ -229,7 +230,7 @@ public class Zakladka_gry extends AppCompatActivity {
                 iloscZyc--;
                 zyciaGracza[iloscZyc].setVisibility(View.INVISIBLE);
                 if(iloscZyc == 0){
-                    Toast.makeText(Zakladka_gry.this, "Przegrałeś", Toast.LENGTH_SHORT).show();
+                    koniecGry();
                     finish();
                     System.exit(0);
                 }
@@ -255,14 +256,19 @@ public class Zakladka_gry extends AppCompatActivity {
         countDownTimer.start();
     }
     private void nastepnePytanie() {
-        numerAktualnegoPytania++;
+        numerAktualnegoPytania+=90;
 
         if (numerAktualnegoPytania >= pytanie.size()) {
-            Toast.makeText(this, "Koniec pytań!", Toast.LENGTH_SHORT).show();
-            finish();
+            koniecGry();
             return;
         }
 
         wyswietlPytanie(numerAktualnegoPytania);
+    }
+    private void koniecGry(){
+        Toast.makeText(this, "Koniec gry!", Toast.LENGTH_SHORT).show();
+        Intent koniec_gry = new Intent(getApplicationContext(), Koniec_gry.class);
+        koniec_gry.putExtra("wynikGracza", iloscPunktow);
+        startActivity(koniec_gry);
     }
 }
