@@ -19,4 +19,6 @@ public interface WynikiDAO {
     List<Wyniki> wyswietlWszystkieWyniki();
     @Query("SELECT * FROM wynikiGry ORDER BY punktyGracza DESC LIMIT :limit OFFSET :offset")
     List<Wyniki> pobierzStrone(int limit, int offset);
+    @Query("SELECT COUNT(*) FROM wynikiGry")
+    int policzWszystkie();
 }

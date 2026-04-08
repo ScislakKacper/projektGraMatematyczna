@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -19,9 +20,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
     private Button przyciskGraj;
     private Button przyciskRanking;
+    private Button ileDoKoncaDnia;
     private ImageButton zamknijApke;
     private ImageButton infoGra;
     @Override
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         infoGra = findViewById(R.id.info_gra);
         przyciskGraj = findViewById(R.id.przycisk_graj);
         przyciskRanking = findViewById(R.id.przycisk_ranking);
+        ileDoKoncaDnia = findViewById(R.id.przycisk_ileDoKonca);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -82,6 +89,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent zobaczRanking = new Intent(getApplicationContext(), Ranking.class);
                 startActivity(zobaczRanking);
+            }
+        });
+
+        ileDoKoncaDnia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                Calendar polnoc = Calendar.getInstance();
+                polnoc.set(Calendar.HOUR_OF_DAY, 24);
+                polnoc.set(Calendar.MINUTE, 0);
+                polnoc.set(Calendar.SECOND, 0);
+                polnoc.set(Calendar.MILLISECOND, 0);
+
+                long rozniaca_polnoc_teraz = polnoc.getTimeInMillis() - calendar.getTimeInMillis();
+                long godziny = TimeUnit.MILLISECONDS.toHours(rozniaca_polnoc_teraz);
+                long minuty = TimeUnit.MILLISECONDS.toMinutes(rozniaca_polnoc_teraz) % 60;
+                long sekundy = TimeUnit.MILLISECONDS.toSeconds(rozniaca_polnoc_teraz) % 60;
+
+                String czas = String.format(Locale.getDefault(), "Do końca dnia pozostało: %02d:%02d:%02d", godziny, minuty, sekundy);
+                Toast.makeText(MainActivity.this, czas, Toast.LENGTH_SHORT).show();
             }
         });
     }

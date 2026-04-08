@@ -21,7 +21,7 @@ public class Ranking extends AppCompatActivity {
     private Button przyciskPoprzedniaStrona, przyciskNastepnaStrona;
     private WynikiAdapter wynikiAdapter;
     BazaDanychWynikow bazaDanychWynikow;
-
+    int liczbaWynikow = 0;
     int iloscWierszy = 10;
     int aktualnaStrona = 0;
     @Override
@@ -72,8 +72,16 @@ public class Ranking extends AppCompatActivity {
         pokazStrone();
     }
     public void pokazStrone(){
+        liczbaWynikow = bazaDanychWynikow.zwrocWynikiDao().policzWszystkie();
+        dostepnoscPrzyciskow();
         int offset = aktualnaStrona * iloscWierszy;
         List<Wyniki> lista = bazaDanychWynikow.zwrocWynikiDao().pobierzStrone(iloscWierszy, offset);
         wynikiAdapter.setLista(lista, offset);
+    }
+    public void dostepnoscPrzyciskow(){
+        if(liczbaWynikow == 0) return;
+        int maxStrona = (liczbaWynikow - 1) / iloscWierszy;
+        przyciskPoprzedniaStrona.setEnabled(aktualnaStrona > 0);
+        przyciskNastepnaStrona.setEnabled(aktualnaStrona < maxStrona);
     }
 }
