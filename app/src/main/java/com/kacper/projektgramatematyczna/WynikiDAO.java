@@ -17,4 +17,6 @@ public interface WynikiDAO {
     Wyniki wyswietlWynik(String nick);
     @Query("SELECT * FROM wynikiGry ORDER BY punktyGracza DESC")
     List<Wyniki> wyswietlWszystkieWyniki();
+    @Query("SELECT * FROM wynikiGry ORDER BY punktyGracza DESC LIMIT :limit OFFSET :offset")
+    List<Wyniki> pobierzStrone(int limit, int offset);
 }

@@ -11,7 +11,46 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tu będzie ranking"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="82dp" />
+        android:textAllCaps="true"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"
+        android:text="Tabela Wyników"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/listaWynikow"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listaWynikow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3"/>
+
+    <Button
+        android:id="@+id/przyciskPoprzednia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="poprzednia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/przyciskNastepna"
+        app:layout_constraintTop_toBottomOf="@id/listaWynikow"
+        />
+
+    <Button
+        android:id="@+id/przyciskNastepna"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="nastepna"
+        app:layout_constraintStart_toEndOf="@id/przyciskPoprzednia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listaWynikow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
