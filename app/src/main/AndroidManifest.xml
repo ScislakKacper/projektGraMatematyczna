@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projektgramatematyczna">
         <activity
-            android:name=".Ranking"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Koniec_gry"
@@ -24,7 +24,7 @@
             android:name=".Zakladka_gry"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Ranking"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

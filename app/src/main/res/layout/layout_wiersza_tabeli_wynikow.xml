@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:fontFamily="@font/vexler_slip"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:textSize="22sp"
         android:textAlignment="center"/>
 
     <TextView
@@ -19,13 +21,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="20sp"
+        android:textSize="22sp"
+        android:fontFamily="@font/vexler_slip"
+        android:textColor="@color/kolor_napisow"
         android:text="" />
 
     <TextView
         android:id="@+id/punkty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textColor="@color/kolor_napisow"
+        android:textSize="22sp"
+        android:fontFamily="@font/vexler_slip"
         android:text="" />
 </LinearLayout>

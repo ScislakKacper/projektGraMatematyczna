@@ -1,5 +1,6 @@
 package com.kacper.projektgramatematyczna;
 
+import android.adservices.ondevicepersonalization.UserData;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,9 +8,11 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,9 +51,14 @@ public class Ranking extends AppCompatActivity {
         przyciskNastepnaStrona = findViewById(R.id.przyciskNastepna);
         bazaDanychWynikow = BazaDanychWynikow.zwrocInstancjeBazyDanych(this);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         wynikiAdapter = new WynikiAdapter(new ArrayList<>(), 0);
         recyclerView.setAdapter(wynikiAdapter);
+
+        DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
+        divider.setDrawable(ContextCompat.getDrawable(this, R.drawable.linia_przerwy_recyclerview));
+        recyclerView.addItemDecoration(divider);
 
         przyciskNastepnaStrona.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +89,18 @@ public class Ranking extends AppCompatActivity {
     public void dostepnoscPrzyciskow(){
         if(liczbaWynikow == 0) return;
         int maxStrona = (liczbaWynikow - 1) / iloscWierszy;
+        if(aktualnaStrona > 0){
+            przyciskPoprzedniaStrona.getBackground().setAlpha(255);
+        }
+        else{
+            przyciskPoprzedniaStrona.getBackground().setAlpha(50);
+        }
+        if(aktualnaStrona < maxStrona){
+            przyciskNastepnaStrona.getBackground().setAlpha(255);
+        }
+        else{
+            przyciskNastepnaStrona.getBackground().setAlpha(50);
+        }
         przyciskPoprzedniaStrona.setEnabled(aktualnaStrona > 0);
         przyciskNastepnaStrona.setEnabled(aktualnaStrona < maxStrona);
     }
