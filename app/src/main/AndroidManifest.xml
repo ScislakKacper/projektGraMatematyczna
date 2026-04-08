@@ -14,17 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projektgramatematyczna">
         <activity
-            android:name=".MainActivity"
+            android:name=".Koniec_gry"
             android:exported="false" />
         <activity
-            android:name=".Koniec_gry"
-            android:exported="false"
-            android:theme="@style/Theme.Projektgramatematyczna" />
+            android:name=".Ranking"
+            android:exported="false" />
         <activity
             android:name=".Zakladka_gry"
             android:exported="false" />
         <activity
-            android:name=".Ranking"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
