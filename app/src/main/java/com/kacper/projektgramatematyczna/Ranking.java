@@ -1,9 +1,11 @@
 package com.kacper.projektgramatematyczna;
 
 import android.adservices.ondevicepersonalization.UserData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -22,6 +24,7 @@ import java.util.List;
 public class Ranking extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button przyciskPoprzedniaStrona, przyciskNastepnaStrona;
+    private ImageButton powrotDoGlownej;
     private WynikiAdapter wynikiAdapter;
     BazaDanychWynikow bazaDanychWynikow;
     int liczbaWynikow = 0;
@@ -49,6 +52,7 @@ public class Ranking extends AppCompatActivity {
         recyclerView = findViewById(R.id.listaWynikow);
         przyciskPoprzedniaStrona = findViewById(R.id.przyciskPoprzednia);
         przyciskNastepnaStrona = findViewById(R.id.przyciskNastepna);
+        powrotDoGlownej = findViewById(R.id.powrotDoStronyGlownej);
         bazaDanychWynikow = BazaDanychWynikow.zwrocInstancjeBazyDanych(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -77,6 +81,15 @@ public class Ranking extends AppCompatActivity {
                 }
             }
         });
+
+        powrotDoGlownej.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent powrotDoGlownej = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(powrotDoGlownej);
+            }
+        });
+
         pokazStrone();
     }
     public void pokazStrone(){
