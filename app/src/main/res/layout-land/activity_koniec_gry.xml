@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/czwarty_z_palety"
+    tools:context=".Koniec_gry">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koniec Gry"
+        android:shadowDy="0"
+        android:shadowDx="0"
+        android:shadowRadius="20"
+        android:shadowColor="@color/kolor_napisow"
+        android:textColor="@color/kolor_napisow"
+        android:fontFamily="@font/orange_juice2"
+        android:textAllCaps="true"
+        android:textSize="55sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/najlepszyWynik"
+         />
+
+    <TextView
+        android:id="@+id/najlepszyWynik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/chunkfive_ex"
+        android:shadowColor="@color/tekst_przyciskow_glowna"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="20"
+        android:text="Najlepszy wynik: "
+        android:textAllCaps="true"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@id/wynikGry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <TextView
+        android:id="@+id/wynikGry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:shadowDy="0"
+        android:shadowDx="0"
+        android:shadowRadius="20"
+        android:shadowColor="@color/tekst_przyciskow_glowna"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:text="Twój wynik: "
+        android:fontFamily="@font/chunkfive_ex"
+        android:textAllCaps="true"
+        app:layout_constraintTop_toBottomOf="@id/najlepszyWynik"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nickGracza"
+         />
+
+    <AutoCompleteTextView
+        android:id="@+id/nickGracza"
+        android:inputType="text"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/kolor_napisow"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:hint="Podaj nick do zapisania wyniku:"
+        app:layout_constraintTop_toBottomOf="@id/wynikGry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/zapiszWynik"
+         />
+
+    <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/zapiszWynik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:text="Zapisz wynik"
+        android:pointerIcon="hand"
+        android:textSize="17sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:fontFamily="@font/corva_round"
+        app:layout_constraintTop_toBottomOf="@id/wynikGry"
+        app:layout_constraintStart_toEndOf="@id/nickGracza"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/przejdzDoStronyGlownej"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/strona_glowna"
+        android:background="#00000000"
+        app:tint="@color/kolor_napisow"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/nickGracza"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/zagrajPonownie"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/zagrajPonownie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/zagraj_ponownie"
+        android:background="#00000000"
+        app:tint="@color/kolor_napisow"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/nickGracza"
+        app:layout_constraintStart_toEndOf="@id/przejdzDoStronyGlownej"
+        app:layout_constraintEnd_toStartOf="@id/przejdzDoRankingu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageButton
+        android:id="@+id/przejdzDoRankingu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ranking"
+        android:background="#00000000"
+        app:tint="@color/kolor_napisow"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/nickGracza"
+        app:layout_constraintStart_toEndOf="@id/zagrajPonownie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

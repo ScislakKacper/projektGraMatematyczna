@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/czwarty_z_palety"
+    tools:context=".MainActivity" >
+
+
+    <ImageButton
+        android:id="@+id/zamknij_apke"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="165dp"
+        android:background="@color/czwarty_z_palety"
+        android:pointerIcon="hand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/zamknij_apke"
+        app:tint="@color/drugi_z_palety" />
+
+    <ImageButton
+        android:id="@+id/info_gra"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/czwarty_z_palety"
+        android:pointerIcon="hand"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/info_o_grze"
+        app:tint="@color/drugi_z_palety" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mistrzowie Liczb"
+        android:textSize="40dp"
+        android:fontFamily="@font/nexium_regular"
+        android:textColor="@color/pierwszy_z_palety"
+        app:layout_constraintEnd_toStartOf="@id/info_gra"
+        app:layout_constraintStart_toEndOf="@id/zamknij_apke"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
+        app:layout_constraintWidth_percent="50"
+        style="@style/Widget.AppCompat.Light.AutoCompleteTextView"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <TextClock
+        android:id="@+id/textViewCzas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:text=""
+        android:fontFamily="@font/digital_7_mono"
+        android:format12Hour="HH:mm:ss"
+        android:timeZone="GMT+2"
+        android:textColor="@color/kolor_napisow"
+        android:shadowColor="@color/kolor_napisow"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="25"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/przycisk_graj"/>
+
+    <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/przycisk_graj"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:text="GRAJ"
+        android:textSize="15sp"
+        android:pointerIcon="hand"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:fontFamily="@font/corva_round"
+        app:layout_constraintEnd_toStartOf="@+id/przycisk_ranking"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCzas"
+        app:layout_constraintBottom_toTopOf="@id/autor"/>
+
+    <Button
+        android:id="@+id/przycisk_ranking"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:fontFamily="@font/corva_round"
+        android:pointerIcon="hand"
+        android:text="RANKING"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/przycisk_ileDoKonca"
+        app:layout_constraintStart_toEndOf="@id/przycisk_graj"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCzas"
+        app:layout_constraintBottom_toTopOf="@id/autor"/>
+    <Button
+        android:id="@+id/przycisk_ileDoKonca"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:fontFamily="@font/corva_round"
+        android:pointerIcon="hand"
+        android:text="Ile do konca dnia?"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/przycisk_ranking"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCzas"
+        app:layout_constraintBottom_toTopOf="@id/autor"/>
+
+    <TextView
+        android:id="@+id/autor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bambuchinnox"
+        android:text="Kacper Ściślak 4pT"
+        android:textColor="@color/pierwszy_z_palety"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/przycisk_ranking"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

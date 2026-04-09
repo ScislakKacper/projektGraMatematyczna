@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/czwarty_z_palety"
+    tools:context=".Zakladka_gry">
+
+    <ProgressBar
+        android:id="@+id/odliczanieCzasu"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="10dp"
+        android:progressDrawable="@drawable/progress_bar_zielony"
+        android:progress="600"
+        android:max="600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"/>
+    <TextView
+        android:id="@+id/punkty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:text="Punkty: 0"
+        android:fontFamily="@font/appleberry"
+        android:textAllCaps="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4"
+        app:layout_constraintEnd_toStartOf="@id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        android:textSize="25sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline4">
+
+        <ImageView
+            android:id="@+id/serce1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+
+        <ImageView
+            android:id="@+id/serce2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+
+        <ImageView
+            android:id="@+id/serce3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/serce" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/poziomTrudnosci"
+        android:fontFamily="@font/chunkfive_ex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="true"
+        android:textSize="17sp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/kolor_napisow"
+        android:text="poziom łatwy"/>
+    <TextView
+        android:id="@+id/trescPytania"
+        android:textColor="@color/kolor_napisow"
+        android:fontFamily="@font/chunkfive_ex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:padding="5dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/poziomTrudnosci"
+        app:layout_constraintBottom_toTopOf="@id/dzialanieZPytania"/>
+
+    <com.agog.mathdisplay.MTMathView
+        android:id="@+id/dzialanieZPytania"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trescPytania"
+        app:layout_constraintBottom_toTopOf="@id/odpowiedzi"/>
+
+
+    <RadioGroup
+        android:id="@+id/odpowiedzi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/zatwierdzPytanie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trescPytania"
+        android:gravity="center"
+        android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/odpa"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/trzeci_z_palety"
+                android:buttonTint="#FF0000"
+                android:fontFamily="@font/biko_bold"
+                android:text=""
+                android:textColor="@color/kolor_napisow"
+                android:textSize="15sp"
+                />
+
+            <RadioButton
+                android:id="@+id/odpb"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/trzeci_z_palety"
+                android:fontFamily="@font/biko_bold"
+                android:text=""
+                android:textColor="@color/kolor_napisow"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/odpc"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/trzeci_z_palety"
+                android:fontFamily="@font/biko_bold"
+                android:text=""
+                android:textColor="@color/kolor_napisow"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/odpd"
+                style="@style/MyRadioButtonStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/trzeci_z_palety"
+                android:fontFamily="@font/biko_bold"
+                android:text=""
+                android:textColor="@color/kolor_napisow"
+                android:textSize="15sp" />
+
+    </RadioGroup>
+
+    <Button
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/zatwierdzPytanie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/odpowiedzi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25sp"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:fontFamily="@font/corva_round"
+        android:backgroundTint="@color/drugi_z_palety"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:pointerIcon="hand"
+        android:textAllCaps="true"
+        android:text="Sprawdz" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="41dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="94dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="176dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
