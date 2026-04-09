@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/alertdialog_tlo_zaokraglone"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tytul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:shadowColor="#635985"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="12"
+        android:text="ZASADY GRY"
+        android:textColor="#635985"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tresc"/>
+
+    <TextView
+        android:id="@+id/tresc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:text="\n1. Masz ograniczony czas na odpowiedź.\n\n2. Poprawna odpowiedź = 1 punkt.\n\n3. Błąd zabiera serce.\n\n4. Brak czasu zabiera serce i zmienia pytanie. \n\n5. Wyniki trafiają do rankingu."
+        android:textColor="@color/kolor_napisow"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tytul"
+        app:layout_constraintBottom_toTopOf="@id/przycisk_ok"/>
+
+    <Button
+        android:id="@+id/przycisk_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#635985"
+        android:layout_margin="10dp"
+        android:text="OK"
+        android:textColor="@color/tekst_przyciskow_glowna"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tresc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

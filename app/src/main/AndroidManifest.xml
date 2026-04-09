@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projektgramatematyczna">
         <activity
+            android:name=".zasady"
+            android:exported="false" />
+        <activity
             android:name=".Koniec_gry"
             android:exported="false" />
         <activity

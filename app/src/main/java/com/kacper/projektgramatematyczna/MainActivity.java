@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -74,13 +75,17 @@ public class MainActivity extends AppCompatActivity {
         infoGra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.AlertDialogCustom));
-                builder.setTitle("Zasady gry \"Mistrzowie Liczb\":");
-                builder.setMessage("\n\n1. Kazdy gracz posiada okreslony czas na rozwiazanie wylosowanego pytania z dziedziny matematycznej.\n\n2. Za poprawna odpowiedz gracz otrzymuje 1 punkt i przechodzi do następnego zadania, w ktorym czas odlicza sie od nowa.\n\n3. Gra konczy się gdy gracz nie odpowie na pytanie w limicie czasowym lub poda błedna odpowiedz.\n\n4. Wszystkie wyniki graczy zapisywane sa w ogolnodostępnym rankingu.");
-                builder.setCancelable(true);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                alertDialog.getWindow().setLayout(1000, 1200);
+                LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+                View widokZasad = layoutInflater.inflate(R.layout.layout_zasady, null);
+
+                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this).setView(widokZasad).create();
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                dialog.show();
+
+                dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+
+                Button przyciskOk = widokZasad.findViewById(R.id.przycisk_ok);
+                przyciskOk.setOnClickListener(v -> dialog.dismiss());
             }
         });
 
@@ -97,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
                 Calendar polnoc = Calendar.getInstance();
-                polnoc.set(Calendar.HOUR_OF_DAY, 24);
+                polnoc.add(Calendar.DAY_OF_MONTH, 1);
+                polnoc.set(Calendar.HOUR_OF_DAY, 0);
                 polnoc.set(Calendar.MINUTE, 0);
                 polnoc.set(Calendar.SECOND, 0);
                 polnoc.set(Calendar.MILLISECOND, 0);
