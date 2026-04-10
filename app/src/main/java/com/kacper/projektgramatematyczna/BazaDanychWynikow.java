@@ -11,9 +11,7 @@ public abstract class BazaDanychWynikow extends RoomDatabase {
     public static BazaDanychWynikow instancja;
     public static BazaDanychWynikow zwrocInstancjeBazyDanych(Context context){
         if(instancja == null){
-            instancja = Room.databaseBuilder(context, BazaDanychWynikow.class, "wynikiDB")
-                    .allowMainThreadQueries()
-                    .build();
+            instancja = Room.databaseBuilder(context, BazaDanychWynikow.class, "wynikiDB").build();
         }
         return instancja;
     }

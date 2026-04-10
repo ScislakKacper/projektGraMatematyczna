@@ -90,7 +90,7 @@ public class Zakladka_gry extends AppCompatActivity {
         odliczanieCzasu = findViewById(R.id.odliczanieCzasu);
 
         zyciaGracza = new ImageView[]{
-          findViewById(R.id.serce1), findViewById(R.id.serce2), findViewById(R.id.serce3)
+                findViewById(R.id.serce1), findViewById(R.id.serce2), findViewById(R.id.serce3)
         };
 
         przyciskiOdpowiedzi = new RadioButton[]{
@@ -256,7 +256,7 @@ public class Zakladka_gry extends AppCompatActivity {
         countDownTimer.start();
     }
     private void nastepnePytanie() {
-        numerAktualnegoPytania+=89;
+        numerAktualnegoPytania++;
 
         if (numerAktualnegoPytania >= pytanie.size()) {
             koniecGry();

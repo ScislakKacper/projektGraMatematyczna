@@ -12,10 +12,12 @@
         android:left="5dp"
         android:right="5dp">
         <scale android:scaleWidth="100%">
-            <shape>
-                <corners android:radius="8dp"/>
-                <solid android:color="#00FF00"/>
-            </shape>
+            <clip>
+                <shape>
+                    <corners android:radius="8dp"/>
+                    <solid android:color="#00FF00"/>
+                </shape>
+            </clip>
         </scale>
     </item>
 </layer-list>
