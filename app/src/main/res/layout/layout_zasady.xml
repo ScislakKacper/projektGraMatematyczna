@@ -35,7 +35,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/chunkfive_ex"
-        android:text="\n1. Masz ograniczony czas na odpowiedź.\n\n2. Poprawna odpowiedź = 1 punkt.\n\n3. Błąd zabiera serce.\n\n4. Brak czasu zabiera serce i zmienia pytanie. \n\n5. Wyniki trafiają do rankingu."
+        android:text="\n1. Masz ograniczony czas na odpowiedź.\n\n2. Poprawna odpowiedź = 1 punkt.\n\n3. Błąd zabiera serce.\n\n4. Brak czasu zabiera serce i zmienia pytanie. \n\n5. Wyniki trafiają do rankingu.\n\n6. Wybierz orientację urządzenia w menu, bo później już nie będziesz mógł jej zmienić."
         android:textColor="@color/kolor_napisow"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

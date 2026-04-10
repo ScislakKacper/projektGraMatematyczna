@@ -1,6 +1,7 @@
 package com.kacper.projektgramatematyczna;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -76,6 +77,7 @@ public class Zakladka_gry extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         iloscPunktow = 0;
         textViewPytanie = findViewById(R.id.trescPytania);
         textViewPoziomTrudnosci = findViewById(R.id.poziomTrudnosci);
