@@ -3,6 +3,7 @@ package com.kacper.projektgramatematyczna;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -131,7 +132,8 @@ public class Koniec_gry extends AppCompatActivity {
                 viewModel.getWynik(wpisanyNick).observe(Koniec_gry.this, wyniki -> {
                     if(wyniki != null){
                         if(ostatniWynik > wyniki.getPunktyGracza()){
-                            najlepszyWynik.setText("Najlepszy wynik: " + ostatniWynik);
+                            najlepszyWynik.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            najlepszyWynik.setText("Najlepszy wynik: " + ostatniWynik + "\n\n(NOWY!!!)");
                         }
                         else{
                             najlepszyWynik.setText("Najlepszy wynik: " + wyniki.getPunktyGracza());

@@ -145,14 +145,15 @@ public class Zakladka_gry extends AppCompatActivity {
             RadioButton zaznaczonyDobrze = findViewById(radioGroup.getCheckedRadioButtonId());
             zaznaczonyDobrze.setBackgroundColor(Color.GREEN);
             if(aktualne_pytanie.getPoziom().equals("latwy")){
-                iloscPunktow++;
+                iloscPunktow += 10;
             }
             else if(aktualne_pytanie.getPoziom().equals("sredni")){
-                iloscPunktow += 2;
+                iloscPunktow += 20;
             }
             else{
-                iloscPunktow += 3;
+                iloscPunktow += 30;
             }
+            radioGroup.clearCheck();
             textViewPunkty.setText("Punkty: " + iloscPunktow);
             countDownTimer.cancel();
             nastepnePytanie();

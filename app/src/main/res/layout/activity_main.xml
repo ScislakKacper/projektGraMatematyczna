@@ -87,6 +87,7 @@
         android:text=""
         android:fontFamily="@font/digital_7_mono"
         android:format12Hour="HH:mm:ss"
+        android:format24Hour="HH:mm:ss"
         android:timeZone="GMT+2"
         android:textColor="@color/kolor_napisow"
         android:shadowColor="@color/kolor_napisow"
