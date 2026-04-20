@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         zamknijApke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                finishAffinity();
                 System.exit(0);
             }
         });
